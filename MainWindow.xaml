@@ -5,12 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DCodeSerialComm"
         mc:Ignorable="d"
-        Title="DCode Serial Comm" Height="160" Width="585">
-    <Grid RenderTransformOrigin="0.488,0.52">
+        Title="DCode Serial Comm" Height="160" Width="590">
+    <Grid RenderTransformOrigin="0.488,0.52" Margin="0,0,2,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="556*"/>
-            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="561*"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="browse_button" Content="Browse" HorizontalAlignment="Left" Margin="456,10,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0.379,1.6" Height="30" Grid.Column="1" Click="browse_button_Click"/>
         <TextBox x:Name="dcode_filename" HorizontalAlignment="Left" Height="30" Margin="0,10,0,0" TextWrapping="Wrap" Text="Filename" VerticalAlignment="Top" Width="451" RenderTransformOrigin="-1.322,0.226" Grid.Column="1"/>
@@ -19,7 +18,7 @@
         <TextBlock x:Name="progress_bar_percent" Grid.Column="1" HorizontalAlignment="Left" Margin="0,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="2.067,0.529" Width="557" TextAlignment="Center" Height="20"/>
         <TextBlock x:Name="tbProgress" HorizontalAlignment="Left" Margin="0,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="557" TextAlignment="Center" Height="20" RenderTransformOrigin="0.557,2.5" Grid.Column="1"/>
         <Button x:Name="cancel_button" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="101" Margin="456,45,0,0" RenderTransformOrigin="0.979,2.8" Height="30" Grid.Column="1" Click="cancel_button_Click" IsEnabled="False"/>
-        <TextBlock x:Name="com_port_text" Grid.Column="1" HorizontalAlignment="Left" Margin="105,45,0,0" TextWrapping="Wrap" Text="Find COM Port" VerticalAlignment="Top" Height="30" Width="241" TextAlignment="Center"/>
+        <TextBlock x:Name="com_port_text" Grid.Column="1" HorizontalAlignment="Left" Margin="105,52,0,0" TextWrapping="Wrap" Text="Arduino : COMX" VerticalAlignment="Top" Height="20" Width="241" TextAlignment="Center" RenderTransformOrigin="0.494,1.233"/>
         <Button x:Name="find_com_port_button" Content="Find COM Port" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="0,45,0,0" RenderTransformOrigin="0.979,2.8" Height="30" Grid.Column="1" Click="find_com_port_button_Click"/>
 
     </Grid>

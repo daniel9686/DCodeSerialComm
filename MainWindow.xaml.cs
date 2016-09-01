@@ -66,7 +66,7 @@ namespace DCodeSerialComm
         {
             BackgroundWorker worker = sender as BackgroundWorker;
 
-            for (int i = 0; (i <= 10); i++)
+            for (int i = 0; (i <= 100); i++)
             {
                 if ((worker.CancellationPending == true))
                 {
@@ -76,8 +76,8 @@ namespace DCodeSerialComm
                 else
                 {
                     // Perform a time consuming operation and report progress.
-                    System.Threading.Thread.Sleep(200);
-                    worker.ReportProgress((i * 10));
+                    System.Threading.Thread.Sleep(50);
+                    worker.ReportProgress((i));
                 }
             }
         }
