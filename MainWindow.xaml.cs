@@ -147,6 +147,8 @@ namespace DCodeSerialComm
             if (portFound == true)
             {
                 com_port_text.Text = "Arduino Found! " + currentPort.ToString();
+                verify_send_button.IsEnabled = true;
+                find_com_port_button.IsEnabled = false;
             }
             else
             {
