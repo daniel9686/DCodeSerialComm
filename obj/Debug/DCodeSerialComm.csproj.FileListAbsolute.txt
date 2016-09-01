@@ -1,0 +1,14 @@
+c:\users\daniel\documents\visual studio 2015\Projects\DCodeSerialComm\DCodeSerialComm\bin\Debug\DCodeSerialComm.exe.config
+c:\users\daniel\documents\visual studio 2015\Projects\DCodeSerialComm\DCodeSerialComm\bin\Debug\DCodeSerialComm.exe
+c:\users\daniel\documents\visual studio 2015\Projects\DCodeSerialComm\DCodeSerialComm\bin\Debug\DCodeSerialComm.pdb
+c:\users\daniel\documents\visual studio 2015\Projects\DCodeSerialComm\DCodeSerialComm\obj\Debug\DCodeSerialComm.csprojResolveAssemblyReference.cache
+c:\users\daniel\documents\visual studio 2015\Projects\DCodeSerialComm\DCodeSerialComm\obj\Debug\MainWindow.g.cs
+c:\users\daniel\documents\visual studio 2015\Projects\DCodeSerialComm\DCodeSerialComm\obj\Debug\App.g.cs
+c:\users\daniel\documents\visual studio 2015\Projects\DCodeSerialComm\DCodeSerialComm\obj\Debug\DCodeSerialComm_MarkupCompile.cache
+c:\users\daniel\documents\visual studio 2015\Projects\DCodeSerialComm\DCodeSerialComm\obj\Debug\DCodeSerialComm_MarkupCompile.lref
+c:\users\daniel\documents\visual studio 2015\Projects\DCodeSerialComm\DCodeSerialComm\obj\Debug\MainWindow.baml
+c:\users\daniel\documents\visual studio 2015\Projects\DCodeSerialComm\DCodeSerialComm\obj\Debug\DCodeSerialComm.g.resources
+c:\users\daniel\documents\visual studio 2015\Projects\DCodeSerialComm\DCodeSerialComm\obj\Debug\DCodeSerialComm.Properties.Resources.resources
+c:\users\daniel\documents\visual studio 2015\Projects\DCodeSerialComm\DCodeSerialComm\obj\Debug\DCodeSerialComm.csproj.GenerateResource.Cache
+c:\users\daniel\documents\visual studio 2015\Projects\DCodeSerialComm\DCodeSerialComm\obj\Debug\DCodeSerialComm.exe
+c:\users\daniel\documents\visual studio 2015\Projects\DCodeSerialComm\DCodeSerialComm\obj\Debug\DCodeSerialComm.pdb
