@@ -2,6 +2,9 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
+using System.Threading;
+using System.IO.Ports;
+using System.IO;
 
 namespace DCodeSerialComm
 {
@@ -11,6 +14,10 @@ namespace DCodeSerialComm
     public partial class MainWindow : Window
     {
         BackgroundWorker bw = new BackgroundWorker();
+        StreamReader sr;
+        SerialPort currentPort;
+        bool portFound;
+        long file_size;
 
         public MainWindow()
         {
@@ -39,6 +46,10 @@ namespace DCodeSerialComm
             {
                 dcode_filename.Text = openFileDialog1.FileName;
             }
+            FileInfo file = new FileInfo(openFileDialog1.FileName);
+            file_size = file.Length / 9;    // 9 bytes per line (roughly 8 + \n), so this gives an estimate of the number of lines in the file
+            //Pass the file path and file name to the StreamReader constructor
+            sr = new StreamReader(openFileDialog1.FileName);
         }
 
         private void verify_send_button_Click(object sender, RoutedEventArgs e)
@@ -65,8 +76,12 @@ namespace DCodeSerialComm
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-
-            for (int i = 0; (i <= 100); i++)
+            //Read the first line of text
+            String line;
+            byte[] buffer = new byte[8];
+            line = sr.ReadLine();
+            long count = 0;
+            while (line != null)
             {
                 if ((worker.CancellationPending == true))
                 {
@@ -75,9 +90,14 @@ namespace DCodeSerialComm
                 }
                 else
                 {
-                    // Perform a time consuming operation and report progress.
-                    System.Threading.Thread.Sleep(50);
-                    worker.ReportProgress((i));
+                    for (int i = 0; i < 8; i++)
+                    {
+                        buffer[i] = Convert.ToByte(line[i]);
+                    }
+                    currentPort.Write(buffer, 0, 8);    // send the current line
+                    line = sr.ReadLine();               // read in the next line
+                    
+                    worker.ReportProgress( (int)((++count * 100) / file_size));
                 }
             }
         }
@@ -107,6 +127,9 @@ namespace DCodeSerialComm
                 tbProgress.Text = "Done!";
                 cancel_button.IsEnabled = false;
             }
+            // close the serial port and file
+            currentPort.Close();
+            sr.Close();
         }
 
         private void cancel_button_Click(object sender, RoutedEventArgs e)
@@ -120,7 +143,80 @@ namespace DCodeSerialComm
 
         private void find_com_port_button_Click(object sender, RoutedEventArgs e)
         {
+            set_ComPort();
+            if (portFound == true)
+            {
+                com_port_text.Text = "Arduino Found! " + currentPort.ToString();
+            }
+            else
+            {
+                com_port_text.Text = "Arduino Not Found!";
+            }
+        }
 
+        private void set_ComPort()
+        {
+            try
+            {
+                string[] ports = SerialPort.GetPortNames();
+                foreach (string port in ports)
+                {
+                    currentPort = new SerialPort(port, 38400);
+                    if (DetectArduino())
+                    {
+                        portFound = true;
+                        break;
+                    }
+                    else
+                    {
+                        portFound = false;
+        
+            }
+                }
+            }
+            catch (Exception e)
+            {
+            }
+        }
+        private bool DetectArduino()
+        {
+            try
+            {
+                //The below setting are for the Hello handshake
+                byte[] buffer = new byte[5];
+                buffer[0] = Convert.ToByte('I');
+                buffer[1] = Convert.ToByte('S');
+                buffer[2] = Convert.ToByte('A');
+                buffer[3] = Convert.ToByte('R');
+                buffer[4] = Convert.ToByte('D');
+                int intReturnASCII = 0;
+                char charReturnValue = (Char)intReturnASCII;
+                currentPort.Open();
+                currentPort.Write(buffer, 0, 5);
+                Thread.Sleep(100);
+                int count = currentPort.BytesToRead;
+                string returnMessage = "";
+                while (count > 0)
+                {
+                    intReturnASCII = currentPort.ReadByte();
+                    returnMessage = returnMessage + Convert.ToChar(intReturnASCII);
+                    count--;
+                }
+
+                if (returnMessage.Contains("ARD_MEGA"))
+                {
+                    return true;
+                }
+                else
+                {
+                    currentPort.Close();
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }
